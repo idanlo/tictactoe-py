@@ -1,10 +1,7 @@
 # Online Tic Tac Toe
 ## new player joins:
 
-
-- player sends request "NEW_PLAYER",
-
-- player receives unique ID and saves it
+- player sends request "NEW_PLAYER", player receives unique ID and saves it
 
 ## player chooses lobby:
 

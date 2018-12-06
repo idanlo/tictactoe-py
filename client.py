@@ -93,10 +93,11 @@ def main():
         sock.send("NEW_PLAYER")
         my_id = sock.recv(1024)
         print my_id
+        connected_to_lobby = False
+        board = []
         while not game_on:
             data = ""
-            err = True
-            while not err:
+            while not connected_to_lobby:
                 lobby_id = raw_input("Enter lobby id: ")
                 sock.send("JOIN_LOBBY " + lobby_id + " " + my_id)
                 data = sock.recv(1024)
@@ -104,8 +105,8 @@ def main():
                 data = data.split()
                 print data[0] != "FAILED_TO_JOIN_LOBBY"
                 if data[0] != "FAILED_TO_JOIN_LOBBY":
-                    err = False
-            raw_input("somethin ")
+                    connected_to_lobby = True
+            sock.send("GET_BOARD " + my_id)
                 
 
 

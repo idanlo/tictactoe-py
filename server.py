@@ -8,9 +8,10 @@ class Game(object):
         self.board = ["0"," "," "," "," "," "," "," "," "," "]
         self.turn = "Player 1" if random.randint(0, 1) == 1 else "Player 2"
         self.id = id
-        self.playercount = 0
+        self.playercount = 1
 
-    def get_board(self):
+    
+    def __str__(self):
         return "*".join(self.board)
 
 class Player(object):
@@ -40,6 +41,7 @@ def on_new_client(client_socket, address):
                         if lob[0].playercount < 2:
                             lob[0].playercount += 1
                             print "Player (id: " + data[2] + ") joined lobby (id: " + lob_id + ")"
+                            print lob[0]
                             client_socket.send("JOIN_LOBBY " + lob_id)
                         else:
                             print "Player (id: " + data[2] + ") attempted to join lobby (id: " + lob_id + ") but it is full"
